@@ -52,7 +52,7 @@
         ```bash
         php artisan serve
         ```
-    - Proyek akan berjalan di `http://localhost:8000 || http://127.0.0.1:8000/` secara default.
+    - Proyek akan berjalan di `http://localhost:8000.
 
 7. **Login**
     - Login menggunakan akun admin dengan username dan password berikut:
