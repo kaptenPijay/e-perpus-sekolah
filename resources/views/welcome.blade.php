@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex flex-col items-center mt-16">
-                <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Selamat datang di Sistem Informasi Perpustakaan Sekolah</h1>
+                <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Selamat datang di Sistem Informasi Perpustakaan Rumah Belajar Jambi (RUMBAI)</h1>
                 <h2 class="text-3xl font-semibold mb-6 text-red-400">{{ App\Models\Setting::first()->webname }}</h2>
                 <p class="text-gray-100 text-center max-w-md text-gray-800 dark:text-white">Masuk untuk mengakses layanan perpustakaan secara online.</p>
                 <div class="flex flex-col md:flex-row mt-8 space-y-4 md:space-y-0 md:space-x-4">
@@ -55,7 +55,7 @@
             </div>
 
               <!-- Toggle Switch for Dark Mode -->
-    
+
             <div class="flex justify-between items-center mt-16">
                 <p class="text-sm text-gray-500">© {{ date('Y') }} Sistem Informasi Perpustakaan Sekolah. <a href="https://abdulmanap.com">Dibuat dengan ❤️</a></p>
                 <p class="text-sm text-gray-500">Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</p>
