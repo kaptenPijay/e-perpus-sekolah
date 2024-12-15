@@ -53,6 +53,48 @@
                     </a>
                 </div>
             </div>
+            <div class="mx-auto" style="width: 50%;">
+                <h1 style="color: black; font-size:3rem;font-weight:bold" class="text-center">Data Buku</h1>
+            </div>
+
+            <div class="mt-4 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th scope="col"
+                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Nama
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Penulis
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Tahun Rilis
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @forelse ($buku as $item)
+                            <tr>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                    {{ $item->nama_buku }}
+                                </td>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                    {{ $item->penulis }}</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                    {{ $item->tahun_rilis }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500" colspan="6">
+                                    Tidak ada data yang ditemukan.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
 
               <!-- Toggle Switch for Dark Mode -->
 

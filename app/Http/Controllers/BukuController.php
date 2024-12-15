@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
@@ -28,7 +29,6 @@ class BukuController extends Controller
 
 
         return view('book.index', compact('settings', 'buku'));
-
     }
 
     /**
@@ -49,12 +49,14 @@ class BukuController extends Controller
             'book_title' => 'required|string',
             'author' => 'required|string',
             'release_year' => 'required|string',
+            'status' => 'required|string',
         ]);
 
         Buku::create([
             'nama_buku' => $validatedData['book_title'],
             'penulis' => $validatedData['author'],
             'tahun_rilis' => $validatedData['release_year'],
+            'status' => $validatedData['status']
         ]);
         return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan.');
     }
@@ -72,7 +74,8 @@ class BukuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+        return \view('book.edit', ['buku' => $buku]);
     }
 
     /**
@@ -80,7 +83,17 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'nama_buku' => 'required|string',
+            'penulis' => 'required|string',
+            'tahun_rilis' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        $buku->update($validatedData);
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil dirubah.');
     }
 
     /**
@@ -100,5 +113,4 @@ class BukuController extends Controller
         return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil dihapus.');
     }
-
 }

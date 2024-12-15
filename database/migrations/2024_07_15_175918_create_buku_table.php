@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_buku');
             $table->string('penulis');
             $table->string('tahun_rilis')->nullable();
+            $table->enum('status', ['Salah', 'Benar', 'Ubah']);
             $table->timestamps();
         });
     }

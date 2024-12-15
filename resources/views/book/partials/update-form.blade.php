@@ -1,32 +1,31 @@
-<form action="{{ route('buku.store') }}" method="POST">
+<form action="{{ route('buku.update',$buku->id) }}" method="POST">
     @csrf
-
-
+    @method('PUT')
 
     <div class="mb-4">
-        <x-input-label for="book_title">{{ __('Judul Buku') }}</x-input-label>
-        <x-text-input id="book_title" class="mt-1 block w-full" type="text" name="book_title"
-            value="{{ old('book_title') }}" required />
-        @error('book_title')
+        <x-input-label for="nama_buku">{{ __('Judul Buku') }}</x-input-label>
+        <x-text-input id="nama_buku" class="mt-1 block w-full" type="text" name="nama_buku"
+            value="{{ old('nama_buku',$buku->nama_buku) }}" required />
+        @error('nama_buku')
             <x-input-error-set :message="$message" class="mt-2" />
         @enderror
     </div>
 
     <div class="mb-4">
-        <x-input-label for="author">{{ __('Nama Pengarang') }}</x-input-label>
-        <x-text-input id="author" class="mt-1 block w-full" type="text" name="author" value="{{ old('author') }}"
+        <x-input-label for="penulis">{{ __('Nama Pengarang') }}</x-input-label>
+        <x-text-input id="penulis" class="mt-1 block w-full" type="text" name="penulis" value="{{ old('penulis',$buku->penulis) }}"
             required />
-        @error('author')
+        @error('penulis')
             <x-input-error-set :message="$message" class="mt-2" />
         @enderror
     </div>
 
 
     <div class="mb-4">
-        <x-input-label for="release_year">{{ __('Tahun Rilis') }}</x-input-label>
-        <x-text-input id="release_year" class="mt-1 block w-full" type="number" name="release_year"
-            value="{{ old('release_year') }}" required />
-        @error('release_year')
+        <x-input-label for="tahun_rilis">{{ __('Tahun Rilis') }}</x-input-label>
+        <x-text-input id="tahun_rilis" class="mt-1 block w-full" type="number" name="tahun_rilis"
+            value="{{ old('tahun_rilis',$buku->tahun_rilis) }}" required />
+        @error('tahun_rilis')
             <x-input-error-set :message="$message" class="mt-2" />
         @enderror
     </div>

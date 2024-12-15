@@ -7,11 +7,11 @@
 @endif
 
 
+<form action="{{ route('peminjaman-buku.store') }}" method="POST">
+    @csrf
 
-@if (auth()->user()->role !== 'admin')
-    <form action="{{ route('peminjaman-buku.store') }}" method="POST">
-        @csrf
 
+    @if (auth()->user()->role == 'siswa')
         <div class="mb-4">
             <x-input-label for="user_id">{{ __('Nama Siswa') }}</x-input-label>
             <x-text-input id="user_id" class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm"
@@ -22,7 +22,20 @@
                 <x-input-error-set :message="$message" class="mt-2" />
             @enderror
         </div>
-
+    @else
+    <div class="mb-4">
+        <x-input-label for="user_id">{{ __('Pilih Siswa') }}</x-input-label>
+        <select id="user_id" name="user_id" class="mt-1 block w-full" required>
+            <option value="">Pilih Siswa</option>
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->nama }}</option>
+            @endforeach
+        </select>
+        @error('user_id')
+            <x-input-error-set :message="$message" class="mt-2" />
+        @enderror
+    </div>
+    @endif
 
         <div class="mb-4">
             <x-input-label for="book_id">{{ __('Pilih Buku') }}</x-input-label>
@@ -90,4 +103,3 @@
         </div>
 
     </form>
-@endif

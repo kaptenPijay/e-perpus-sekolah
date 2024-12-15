@@ -62,7 +62,7 @@
                         </tr>
                         <tr>
                             <td class="px-6 py-4 text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Denda Keterlambatan</td>
-                            <td class="px-6 py-4 text-lg text-gray-900 dark:text-white">{{ $pengembalian->peminjaman->total_denda }}</td>
+                            <td class="px-6 py-4 text-lg text-gray-900 dark:text-white">{{ number_format($pengembalian->peminjaman->total_denda, 0, ',', '.') }}</td>
                         </tr>
 
                     </tbody>

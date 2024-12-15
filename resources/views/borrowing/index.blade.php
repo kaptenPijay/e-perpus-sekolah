@@ -14,11 +14,11 @@
 
 
                 <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                    @if(auth()->user()->role !== 'admin')
+                    {{-- @if(auth()->user()->role !== 'admin') --}}
                     <x-secondary-button href="{{ route('peminjaman-buku.create') }}">
                         Tambah
                     </x-secondary-button>
-                @endif
+                {{-- @endif --}}
 
                     <form action="{{ route('peminjaman-buku.index') }}" method="GET"
                         class="flex flex-col sm:flex-row items-center mt-4 sm:mt-0 space-y-2 sm:space-y-0 sm:space-x-4">

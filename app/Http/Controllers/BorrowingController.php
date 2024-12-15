@@ -55,7 +55,7 @@ class BorrowingController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = User::where('role', 'siswa')->get();
         $buku = Buku::all();
         return view('borrowing.create', compact('users', 'buku'));
     }
@@ -85,6 +85,7 @@ class BorrowingController extends Controller
             'status' => 'PENDING',
             'deskripsi' => 'Menunggu Persetujuan Admin',
             'total_denda' => 0.00,
+            'status' => auth()->user()->role != 'siswa' ? 'ACC' : 'PENDING',
         ]);
 
 
@@ -162,6 +163,4 @@ class BorrowingController extends Controller
         return redirect()->route('peminjaman-buku.index')
             ->with('success', 'Data peminjaman buku berhasil dihapus.');
     }
-
-
 }

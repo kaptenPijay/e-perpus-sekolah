@@ -43,7 +43,6 @@ class ReturnBookController extends Controller
             $pengembalian->where('status', $status);
         }
         $pengembalian = $pengembalian->paginate(10);
-     
         return view('returnbook.index', compact('pengembalian'));
     }
 
@@ -52,8 +51,11 @@ class ReturnBookController extends Controller
         $user = auth()->user();
 
 
-        $peminjaman = Peminjaman::where('user_id', $user->id)->get();
-
+        if (auth()->user()->role == 'siswa') {
+            $peminjaman = Peminjaman::where('user_id', $user->id)->get();
+        } else {
+            $peminjaman = Peminjaman::all();
+        }
         return view('returnbook.create', compact('peminjaman'));
     }
 
@@ -87,6 +89,8 @@ class ReturnBookController extends Controller
             'status' => 'PENDING',
             'deskripsi' => 'Belum Disetujui',
             'photo' => $photoPath,
+            'status' => auth()->user()->role != 'siswa' ? 'ACC' : 'PENDING',
+            'deskripsi' => auth()->user()->role != 'siswa' ? 'Disetujui' : 'Belum Disetujui',
         ]);
 
         return redirect()->route('pengembalian-buku.index')

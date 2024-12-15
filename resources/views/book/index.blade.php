@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Buku') }}
+            {{ __('Data Buku') }}
         </h2>
     </x-slot>
 
@@ -69,7 +69,7 @@
                                         @if(auth()->user()->role !== 'siswa')
                                         {{-- <a href="{{ route('buku.edit', $item->id) }}"
                                             class="text-indigo-600 hover:text-indigo-900">Edit</a> --}}
-
+                                            <a href="{{ route('buku.edit',$item->id) }}" style="color: orange">Edit</a>
                                         <x-confirm-delete-modal>
                                             <x-slot name="trigger">
                                                 <button @click="isOpen = true"
