@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,9 +10,19 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if (auth()->user()->role == 'siswa') {
+            return back();
+        }
+        $user = User::latest()->paginate(10);
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->search;
+            $user->where('nama', 'like', '%' . $searchTerm . '%');
+        }
+        return view('user.index', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -19,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -27,7 +38,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:30',
+            'alamat' => 'required|string|max:220',
+            'telepon' => 'required',
+            'email' => 'required|email',
+            'identitas' => 'required|string',
+            'kelas' => 'nullable|string',
+            'role' => 'required',
+        ]);
+        $validatedData['password'] = bcrypt('123');
+
+        User::create($validatedData);
+
+        return redirect()->to('user')->with('success', 'User berhasil Ditambah Dengan Password Default 123.');
     }
 
     /**
@@ -43,7 +67,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
@@ -51,7 +76,21 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:30',
+            'alamat' => 'required|string|max:220',
+            'telepon' => 'required',
+            'email' => 'required|email',
+            'identitas' => 'required|string',
+            'kelas' => 'nullable|string',
+            'role' => 'required',
+        ]);
+
+        $user->update($validatedData);
+
+        return redirect()->to('user')->with('success', 'User berhasil Dirubah.');
     }
 
     /**
@@ -59,6 +98,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('user.index')
+            ->with('success', 'Data User berhasil dihapus.');
     }
 }

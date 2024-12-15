@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('status')->nullable();;
             $table->string('deskripsi')->nullable();;
             $table->decimal('total_denda', 10, 2)->default(0.00);
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('buku_id')->constrained('buku');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('buku_id')->unsigned()->references('id')->on('buku')->onDelete('cascade');
             $table->timestamps();
         });
     }
