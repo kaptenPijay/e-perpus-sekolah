@@ -23,6 +23,7 @@ class KepalaSeeder extends Seeder
             'password' => Hash::make('123'),
             'created_at' => now(),
             'updated_at' => now(),
+            'kepala' => 1
         ]);
     }
 }

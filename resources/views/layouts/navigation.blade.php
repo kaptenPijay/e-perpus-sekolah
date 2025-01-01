@@ -33,7 +33,7 @@
                 @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('peminjaman-buku.index')" :active="request()->routeIs('peminjaman-buku.index')">
-                        {{ __('Pinjam Buku') }}
+                        {{ __('Peminjaman Buku') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -51,6 +51,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         {{ __('Data User') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('denda.index')" :active="request()->routeIs('denda.index')">
+                        {{ __('Data Denda') }}
                     </x-nav-link>
                 </div>
                 @endif
@@ -128,7 +133,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('peminjaman-buku.index')">
-                    {{ __('Pinjam Buku') }}
+                    {{ __('Peminjaman Buku') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('pengembalian-buku.index')">
                     {{ __('Pengembalian Buku') }}

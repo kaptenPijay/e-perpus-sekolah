@@ -15,7 +15,10 @@ class UserController extends Controller
         if (auth()->user()->role == 'siswa') {
             return back();
         }
-        $user = User::latest()->paginate(10);
+        $user = User::where('kepala', false)->paginate(10);
+        if (auth()->user()->kepala == true) {
+            $user = User::where('role', 'admin')->paginate(10);
+        }
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = $request->search;
             $user->where('nama', 'like', '%' . $searchTerm . '%');

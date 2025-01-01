@@ -10,6 +10,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\DendaController;
 use App\Http\Controllers\ReturnBookController;
 use App\Http\Controllers\UserController;
 
@@ -65,6 +66,8 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    Route::get('/denda', [DendaController::class, 'index'])->name('denda.index');
 
     Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
     Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');

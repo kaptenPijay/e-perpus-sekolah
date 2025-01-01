@@ -53,8 +53,12 @@
         <div class="mb-4">
             <x-input-label for="role">{{ __('Role') }}</x-input-label>
             <select id="role" name="role" class="mt-1 block w-full" required>
+                @if (auth()->user()->kepala == true)
+                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                @else
                 <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                 <option value="siswa"  {{ old('role') == 'siswa' ? 'selected' : '' }}>Siswa</option>
+                @endif
             </select>
             @error('role')
                 <x-input-error-set :message="$message" class="mt-2" />
