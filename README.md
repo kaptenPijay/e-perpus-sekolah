@@ -1,4 +1,4 @@
-# Aplikasi Peminjaman Buku Perpustakaan Laravel 10
+# Aplikasi Peminjaman Buku Perpustakaan Laravel
 
 ## Langkah-langkah Instalasi
 
