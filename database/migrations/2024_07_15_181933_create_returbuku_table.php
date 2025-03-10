@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('returbuku', function (Blueprint $table) {
             $table->id();
             $table->foreignId('peminjaman_id')->unsigned()->references('id')->on('peminjaman')->onDelete('cascade');
-            $table->string('status')->nullable();;
-            $table->string('deskripsi')->nullable();;
+            $table->string('status', 20)->nullable();;
+            $table->string('deskripsi', 25)->nullable();;
             $table->string('photo')->nullable();;
             $table->timestamps();
         });

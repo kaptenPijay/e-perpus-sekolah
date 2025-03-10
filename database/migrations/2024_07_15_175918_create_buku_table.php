@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_buku');
-            $table->string('penulis');
-            $table->string('tahun_rilis')->nullable();
+            $table->string('nama_buku', 25);
+            $table->string('penulis', 20);
+            $table->string('tahun_rilis', 4)->nullable();
             $table->enum('status', ['Salah', 'Benar', 'Ubah']);
             $table->timestamps();
         });
